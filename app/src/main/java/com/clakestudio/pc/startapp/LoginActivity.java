@@ -25,12 +25,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText editTextLoginEmail;
-    EditText editTextLoginPassword;
-    Button buttonLogIn;
-    FirebaseAuth firebaseAuth;
+    private EditText editTextLoginEmail;
+    private EditText editTextLoginPassword;
+    private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-
 
 
     @Override
@@ -40,12 +38,13 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        editTextLoginEmail = (EditText)findViewById(R.id.editTextLoginEmail);
-        editTextLoginPassword = (EditText)findViewById(R.id.editTextLoginPassword);
+        editTextLoginEmail = (EditText) findViewById(R.id.editTextLoginEmail);
+        editTextLoginPassword = (EditText) findViewById(R.id.editTextLoginPassword);
 
         progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loggin in");
 
-        buttonLogIn = (Button)findViewById(R.id.buttonLogIn);
+        Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,17 +52,16 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editTextLoginEmail.getText().toString();
                 String password = editTextLoginPassword.getText().toString();
 
-                if (email.length()>4 && email.contains("@") && password.length()>0) {
-                    FirebaseLogInWithEmailAndPassword(email, password);
-                    progressDialog.setMessage("Loggin in");
-                    progressDialog.show();}
-                else {
-                    Toast.makeText(getApplicationContext(), "Invalid email/password lenght must be greater than 0", Toast.LENGTH_LONG).show();
+                if (checkEmailAndPasswordCorrectness(email, password)) {
+                    logInWithEmailAndPassword(email, password);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid email/password lenght must be greater than 0", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-    public void FirebaseLogInWithEmailAndPassword(String email, String password) {
+
+    public void logInWithEmailAndPassword(String email, String password) {
 
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -72,11 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_LONG).show();
-                    Intent MainActivity = new Intent(getApplicationContext(), com.clakestudio.pc.startapp.MainActivity.class);
-                    startActivity(MainActivity);
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
-                }
-                else {
+                } else {
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Something went wrong :(", Toast.LENGTH_LONG).show();
                 }
@@ -85,6 +81,25 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean checkEmailAndPasswordCorrectness(String email, String password) {
+        if (email.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Puste pole e-mail", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (!email.contains("@")) {
+            Toast.makeText(getApplicationContext(), "Pole e-mail nie zawiera znaku @", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (password.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Puste pole hasła", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (password.length() >= 8) {
+            Toast.makeText(getApplicationContext(), "Hasło musi być dłuższe niż 8 znaków", Toast.LENGTH_LONG).show();
+            return false;
+        } else {
+            progressDialog.show();
+            return true;
+        }
     }
 
 }

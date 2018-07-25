@@ -1,16 +1,13 @@
 package com.clakestudio.pc.startapp;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,17 +28,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.volokh.danylo.hashtaghelper.HashTagHelper;
 
 
-
-
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    EditText editTextSearch;
-    HashTagHelper hashTagHelper;
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-    SharedPreferences sharedPreferences;
-
+    private EditText editTextSearch;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+    private SharedPreferences sharedPreferences;
+    private Intent nextActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +47,20 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         sharedPreferences.edit().putBoolean("profile", false).apply();
 
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
-        for (int i = 0; i<tabLayout.getTabCount(); i++) {
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
-            tab.setCustomView(pagerAdapter.getTabView(i));
+            if (tab != null) {
+                tab.setCustomView(pagerAdapter.getTabView(i));
+            }
         }
 
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-
-
-
-
-
-
-
 
 
     }
@@ -83,50 +69,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
-        editTextSearch = (EditText)findViewById(R.id.editTextSearch);
+        editTextSearch = (EditText) findViewById(R.id.editTextSearch);
 
         editTextSearch.setVisibility(View.GONE);
-        final ImageButton imageButton = (ImageButton)findViewById(R.id.buttonSearch);
+        final ImageButton imageButton = (ImageButton) findViewById(R.id.buttonSearch);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (editTextSearch.getVisibility()==View.GONE) {
-                    editTextSearch.setVisibility(View.VISIBLE);
-
-                }
-                else {
-                    editTextSearch.setVisibility(View.GONE);
-
-                }
-
-
-
+                changeVisibility(editTextSearch);
             }
         });
 
 
-        hashTagHelper = HashTagHelper.Creator.create(Color.parseColor("#E57373"), null);
+        HashTagHelper hashTagHelper = HashTagHelper.Creator.create(Color.parseColor("#E57373"), null);
         hashTagHelper.handle(editTextSearch);
         editTextSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
 
-                if (i==EditorInfo.IME_ACTION_DONE) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
 
-                    if (editTextSearch.getText().toString().isEmpty() || !editTextSearch.getText().toString().contains("#") || editTextSearch.getText().toString().contains(" ")){
+                    if (editTextSearch.getText().toString().isEmpty() || !editTextSearch.getText().toString().contains("#") || editTextSearch.getText().toString().contains(" ")) {
 
                         if (editTextSearch.getText().toString().contains(" ") || editTextSearch.getText().toString().contains(",")) {
                             Toast.makeText(getApplicationContext(), "We advise to search one particular functions/ delete space", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Search is empty/does not contain #hashtag", Toast.LENGTH_SHORT).show();
                         }
 
 
-                    }
-                    else {
+                    } else {
                         Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                         intent.putExtra("hashTag", editTextSearch.getText().toString());
                         startActivity(intent);
@@ -134,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 }
-                if (i==keyEvent.KEYCODE_DEL && editTextSearch.getText().toString().isEmpty()) {
+                if (i == KeyEvent.KEYCODE_DEL && editTextSearch.getText().toString().isEmpty()) {
                     editTextSearch.setVisibility(View.GONE);
                     imageButton.setVisibility(View.VISIBLE);
                     return true;
@@ -145,21 +118,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
 
-
+    private void changeVisibility(View view) {
+        if (view.getVisibility() == View.GONE) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        if (firebaseUser==null) {
+        if (firebaseUser == null) {
             getMenuInflater().inflate(R.menu.main_anonymous, menu);
-        }
-        else {
+        } else {
             getMenuInflater().inflate(R.menu.main, menu);
         }
-
-
         return true;
     }
 
@@ -167,100 +142,71 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
+        item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_settings: {
 
-         item.getItemId();
-
-
-            switch (item.getItemId()) {
-
-
-                case R.id.action_settings: {
-
-                    if (firebaseUser == null) {
-                        if (sharedPreferences.getBoolean("anonymous", false)) {
-                            Toast.makeText(getApplicationContext(), "Anonymous users can not view account", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Log in to view account", Toast.LENGTH_LONG).show();
-                            Intent startIntent = new Intent(getApplicationContext(), StartActivity.class);
-                            startActivity(startIntent);
-                            finish();
-                        }
+                if (firebaseUser == null) {
+                    if (sharedPreferences.getBoolean("anonymous", false)) {
+                        Toast.makeText(getApplicationContext(), "Anonymous users can not view account", Toast.LENGTH_LONG).show();
                     } else {
-                        Intent addApp = new Intent(getApplicationContext(), ProfileActivity.class);
-                        startActivity(addApp);
-                        finish();
-
+                        Toast.makeText(getApplicationContext(), "Log in to view account", Toast.LENGTH_LONG).show();
+                        nextActivity = new Intent(getApplicationContext(), StartActivity.class);
                     }
-                    return true;
+                } else {
+                    nextActivity = new Intent(getApplicationContext(), ProfileActivity.class);
+                }
+                break;
+            }
+            case R.id.add_app: {
+                if (firebaseUser == null) {
+                    Toast.makeText(getApplicationContext(), "Create an account/log in first", Toast.LENGTH_LONG).show();
+
+                } else {
+                    getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putBoolean("edit", false).apply();
+                    nextActivity = new Intent(getApplicationContext(), CategorySelectActivity.class);
 
                 }
-
-
-                case R.id.add_app: {
-
-                    // check wheter user logged or no
-
-                    if (firebaseUser == null) {
-                            Toast.makeText(getApplicationContext(), "Create an account/log in first", Toast.LENGTH_LONG).show();
-
-                    } else {
-                        Intent addApp = new Intent(getApplicationContext(), CategorySelectActivity.class);
-                     getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putBoolean("edit", false).apply();
-                        startActivity(addApp);
-                        finish();
-
-                    }
-                    return true;
-                }
-
-                case R.id.start_activity: {
-
-                    if (firebaseUser != null) {
-                        firebaseAuth.signOut();
-                        sharedPreferences.edit().putBoolean("anonymous", false).apply();
-                        Toast.makeText(getApplicationContext(), "User logged out", Toast.LENGTH_LONG).show();
-                        Intent startIntent = new Intent(getApplicationContext(), StartActivity.class);
-                        startActivity(startIntent);
-                        finish();
-                    } else {
-                        sharedPreferences.edit().putBoolean("anonymous", false).apply();
-                        Intent startIntent = new Intent(getApplicationContext(), StartActivity.class);
-                        startActivity(startIntent);
-                        finish();
-                    }
-
-                    return true;
-                }
-                case R.id.privacy_policy: {
-
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://privacypolicyclake.blogspot.com/2017/09/startapp-privacy-policy.html"));
-                    startActivity(browserIntent);
-
-
-                    return true;
-                }
-                case R.id.app_info: {
-                    Intent startIntent = new Intent(getApplicationContext(), InfoActivity.class);
-                    startActivity(startIntent);
-                    finish();
-                }
-
-
+                break;
             }
 
-        return  super.onOptionsItemSelected(item);
+            case R.id.start_activity: {
+                if (firebaseUser != null) {
+                    firebaseAuth.signOut();
+                    sharedPreferences.edit().putBoolean("anonymous", false).apply();
+                    Toast.makeText(getApplicationContext(), "User logged out", Toast.LENGTH_LONG).show();
+                    nextActivity = new Intent(getApplicationContext(), StartActivity.class);
+                } else {
+                    sharedPreferences.edit().putBoolean("anonymous", false).apply();
+                    nextActivity = new Intent(getApplicationContext(), StartActivity.class);
+                }
+                break;
+            }
+            case R.id.privacy_policy: {
+                nextActivity = new Intent(Intent.ACTION_VIEW, Uri.parse("https://privacypolicyclake.blogspot.com/2017/09/startapp-privacy-policy.html"));
+                break;
+
+            }
+            case R.id.app_info: {
+                nextActivity = new Intent(getApplicationContext(), InfoActivity.class);
+                break;
+            }
+        }
+        startActivity(nextActivity);
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
-    class PagerAdapter extends FragmentPagerAdapter{
+    class PagerAdapter extends FragmentPagerAdapter {
 
-        String tabTitles[] = new String[] {
-         "Hot", "New", "Categories"
+        String tabTitles[] = new String[]{
+                "Hot", "New", "Categories"
         };
         Context context;
 
-        public PagerAdapter(android.support.v4.app.FragmentManager fragmentManager,Context context ){
+        PagerAdapter(android.support.v4.app.FragmentManager fragmentManager, Context context) {
             super(fragmentManager);
-            this.context=context;
+            this.context = context;
         }
 
         @Override
@@ -288,9 +234,10 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return tabTitles[position];
         }
-        public View getTabView(int position) {
+
+        View getTabView(int position) {
             View tab = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_tab, null);
-            TextView textView = (TextView)tab.findViewById(R.id.custom_text);
+            TextView textView = (TextView) tab.findViewById(R.id.custom_text);
             textView.setText(tabTitles[position]);
             return tab;
         }

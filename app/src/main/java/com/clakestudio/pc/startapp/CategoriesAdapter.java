@@ -3,17 +3,12 @@ package com.clakestudio.pc.startapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +22,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     Context context;
 
-    List<CategoryObjcet> CategoryObjcets = new ArrayList<>();
-    CategoriesAdapter(List<CategoryObjcet> categoryObjcets) {
-        this.CategoryObjcets=categoryObjcets;
+    List<categoryObject> categoryObjects = new ArrayList<>();
+    CategoriesAdapter(List<categoryObject> categoryObjects) {
+        this.categoryObjects = categoryObjects;
     }
 
 
@@ -68,7 +63,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public void onBindViewHolder(final CategoriesAdapter.CategoriesViewHolder holder, int position) {
-        holder.textView.setText(CategoryObjcets.get(position).getCategory());
+        holder.textView.setText(categoryObjects.get(position).getCategory());
 
 
 
@@ -84,7 +79,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                         context.getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putBoolean("fragment", false).apply();
                         context.startActivity(intent);
                         ((Activity)context).finish();
-
                     }
                     else {
 
@@ -109,7 +103,31 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             });
 
 
-
+/*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+* **/
 
 
 
@@ -117,8 +135,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     @Override
     public int getItemCount() {
-        return CategoryObjcets.size();
+        return categoryObjects.size();
     }
-
 
 }

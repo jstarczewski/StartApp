@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by pc on 2017-08-27.
@@ -39,62 +38,62 @@ public class CategoryFragment extends Fragment {
 
         final RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        ArrayList<CategoryObjcet> categoryObjcets = new ArrayList<>();
+        ArrayList<categoryObject> categoryObjects = new ArrayList<>();
 
 
-        categoryObjcets.add(new CategoryObjcet("Art & Design"));
-        categoryObjcets.add(new CategoryObjcet("Auto & Vehicles"));
-        categoryObjcets.add(new CategoryObjcet("Beauty"));
-        categoryObjcets.add(new CategoryObjcet("Books & Reference"));
-        categoryObjcets.add(new CategoryObjcet("Business"));
-        categoryObjcets.add(new CategoryObjcet("Comics"));
-        categoryObjcets.add(new CategoryObjcet("Communications"));
-        categoryObjcets.add(new CategoryObjcet("Dating"));
-        categoryObjcets.add(new CategoryObjcet("Education"));
-        categoryObjcets.add(new CategoryObjcet("Entertainment"));
-        categoryObjcets.add(new CategoryObjcet("Events"));
-        categoryObjcets.add(new CategoryObjcet("Finance"));
-        categoryObjcets.add(new CategoryObjcet("Food & Drink"));
-        categoryObjcets.add(new CategoryObjcet("Health & Fitness"));
-        categoryObjcets.add(new CategoryObjcet("Libraries & Demo"));
-        categoryObjcets.add(new CategoryObjcet("Lifestyle"));
-        categoryObjcets.add(new CategoryObjcet("Maps & Navigation"));
-        categoryObjcets.add(new CategoryObjcet("Medical"));
-        categoryObjcets.add(new CategoryObjcet("Music & Audio"));
-        categoryObjcets.add(new CategoryObjcet("News & Magazines"));
-        categoryObjcets.add(new CategoryObjcet("Parenting"));
-        categoryObjcets.add(new CategoryObjcet("Personalization"));
-        categoryObjcets.add(new CategoryObjcet("Photography"));
-        categoryObjcets.add(new CategoryObjcet("Productivity"));
-        categoryObjcets.add(new CategoryObjcet("Shopping"));
-        categoryObjcets.add(new CategoryObjcet("Social"));
-        categoryObjcets.add(new CategoryObjcet("Sports"));
-        categoryObjcets.add(new CategoryObjcet("Tools"));
-        categoryObjcets.add(new CategoryObjcet("Travel & Local"));
-        categoryObjcets.add(new CategoryObjcet("Video Players & Editors"));
-        categoryObjcets.add(new CategoryObjcet("Weather"));
-        categoryObjcets.add(new CategoryObjcet("Games:Action"));
-        categoryObjcets.add(new CategoryObjcet("Games:Adventure"));
-        categoryObjcets.add(new CategoryObjcet("Games:Arcade"));
-        categoryObjcets.add(new CategoryObjcet("Games:Board"));
-        categoryObjcets.add(new CategoryObjcet("Games:Card"));
-        categoryObjcets.add(new CategoryObjcet("Games:Casino"));
-        categoryObjcets.add(new CategoryObjcet("Games:Casual"));
-        categoryObjcets.add(new CategoryObjcet("Games:Educational"));
-        categoryObjcets.add(new CategoryObjcet("Games:Music"));
-        categoryObjcets.add(new CategoryObjcet("Games:Puzzle"));
-        categoryObjcets.add(new CategoryObjcet("Games:Racing"));
-        categoryObjcets.add(new CategoryObjcet("Games:Role Playing"));
-        categoryObjcets.add(new CategoryObjcet("Games:Simulation"));
-        categoryObjcets.add(new CategoryObjcet("Games:Sports"));
-        categoryObjcets.add(new CategoryObjcet("Games:Strategy"));
-        categoryObjcets.add(new CategoryObjcet("Games:Trivia"));
-        categoryObjcets.add(new CategoryObjcet("Games:Word"));
+        categoryObjects.add(new categoryObject("Art & Design"));
+        categoryObjects.add(new categoryObject("Auto & Vehicles"));
+        categoryObjects.add(new categoryObject("Beauty"));
+        categoryObjects.add(new categoryObject("Books & Reference"));
+        categoryObjects.add(new categoryObject("Business"));
+        categoryObjects.add(new categoryObject("Comics"));
+        categoryObjects.add(new categoryObject("Communications"));
+        categoryObjects.add(new categoryObject("Dating"));
+        categoryObjects.add(new categoryObject("Education"));
+        categoryObjects.add(new categoryObject("Entertainment"));
+        categoryObjects.add(new categoryObject("Events"));
+        categoryObjects.add(new categoryObject("Finance"));
+        categoryObjects.add(new categoryObject("Food & Drink"));
+        categoryObjects.add(new categoryObject("Health & Fitness"));
+        categoryObjects.add(new categoryObject("Libraries & Demo"));
+        categoryObjects.add(new categoryObject("Lifestyle"));
+        categoryObjects.add(new categoryObject("Maps & Navigation"));
+        categoryObjects.add(new categoryObject("Medical"));
+        categoryObjects.add(new categoryObject("Music & Audio"));
+        categoryObjects.add(new categoryObject("News & Magazines"));
+        categoryObjects.add(new categoryObject("Parenting"));
+        categoryObjects.add(new categoryObject("Personalization"));
+        categoryObjects.add(new categoryObject("Photography"));
+        categoryObjects.add(new categoryObject("Productivity"));
+        categoryObjects.add(new categoryObject("Shopping"));
+        categoryObjects.add(new categoryObject("Social"));
+        categoryObjects.add(new categoryObject("Sports"));
+        categoryObjects.add(new categoryObject("Tools"));
+        categoryObjects.add(new categoryObject("Travel & Local"));
+        categoryObjects.add(new categoryObject("Video Players & Editors"));
+        categoryObjects.add(new categoryObject("Weather"));
+        categoryObjects.add(new categoryObject("Games:Action"));
+        categoryObjects.add(new categoryObject("Games:Adventure"));
+        categoryObjects.add(new categoryObject("Games:Arcade"));
+        categoryObjects.add(new categoryObject("Games:Board"));
+        categoryObjects.add(new categoryObject("Games:Card"));
+        categoryObjects.add(new categoryObject("Games:Casino"));
+        categoryObjects.add(new categoryObject("Games:Casual"));
+        categoryObjects.add(new categoryObject("Games:Educational"));
+        categoryObjects.add(new categoryObject("Games:Music"));
+        categoryObjects.add(new categoryObject("Games:Puzzle"));
+        categoryObjects.add(new categoryObject("Games:Racing"));
+        categoryObjects.add(new categoryObject("Games:Role Playing"));
+        categoryObjects.add(new categoryObject("Games:Simulation"));
+        categoryObjects.add(new categoryObject("Games:Sports"));
+        categoryObjects.add(new categoryObject("Games:Strategy"));
+        categoryObjects.add(new categoryObject("Games:Trivia"));
+        categoryObjects.add(new categoryObject("Games:Word"));
 
 
 
 
-        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(categoryObjcets);
+        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(categoryObjects);
         recyclerView.setAdapter(categoriesAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

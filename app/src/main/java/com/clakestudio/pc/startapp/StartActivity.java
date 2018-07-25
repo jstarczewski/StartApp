@@ -20,57 +20,54 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
 
-    Button registerButton;
-    Button logInButton;
-    FirebaseAuth firebaseAuth;
-    Button buttonBrowse;
-
+    private Intent nextActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
 
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser!=null || sharedPreferences.getBoolean("anonymous", false)){
-            Intent mainIntent = new Intent(this, MainActivity.class);
-            startActivity(mainIntent);
-            finish();
+        Button registerButton = (Button) findViewById(R.id.buttonRegister);
+        Button logInButton = (Button) findViewById(R.id.buttonLogIn);
+        Button buttonBrowse = (Button) findViewById(R.id.buttonBrowse);
+
+        if (firebaseUser != null || sharedPreferences.getBoolean("anonymous", false)) {
+            nextActivity = new Intent(this, MainActivity.class);
+        } else {
+            registerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextActivity = new Intent(getApplicationContext(), RegisterActivity.class);
+                    startNextActivity(nextActivity);
+                }
+            });
+            logInButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextActivity = new Intent(getApplicationContext(), LoginActivity.class);
+                    startNextActivity(nextActivity);
+                }
+            });
+            buttonBrowse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    nextActivity = new Intent(getApplicationContext(), AnonymusUserActivity.class);
+                    startNextActivity(nextActivity);
+                }
+            });
+
         }
-        else {
-        registerButton = (Button)findViewById(R.id.buttonRegister);
-        logInButton = (Button)findViewById(R.id.buttonLogIn);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent registerIntent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(registerIntent);
-                finish();
-            }
-        });
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(loginIntent);
-                finish();
-            }
-        });
-        buttonBrowse = (Button)findViewById(R.id.buttonBrowse);
-        buttonBrowse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent anonymousIntent = new Intent(getApplicationContext(), AnonymusUserActivity.class);
-                startActivity(anonymousIntent);
+    }
 
+    private void startNextActivity(Intent intent) {
+        startActivity(nextActivity);
+        finish();
 
-
-            }
-        }); }
     }
 
 }

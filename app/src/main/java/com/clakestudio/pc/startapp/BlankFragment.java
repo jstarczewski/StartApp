@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 
@@ -27,11 +28,9 @@ import java.util.ArrayList;
 
 public class BlankFragment extends Fragment {
 
-    DatabaseReference appReference = FirebaseDatabase.getInstance().getReference("Apps");
-
-
-   ArrayList<AppObject> appObjects;
-    ArrayList<AppObject> appObjectsSort;
+    private DatabaseReference appReference = FirebaseDatabase.getInstance().getReference("Apps");
+    private ArrayList<AppObject> appObjects;
+    private ArrayList<AppObject> appObjectsSort;
 
 
     public BlankFragment() {
@@ -49,14 +48,13 @@ public class BlankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragemnt_blank, container, false);
-        final RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
-         appObjects = new ArrayList<>();
+        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        appObjects = new ArrayList<>();
 
-     appObjectsSort  = new ArrayList<>();
+        appObjectsSort = new ArrayList<>();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-
 
 
         appReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -66,10 +64,10 @@ public class BlankFragment extends Fragment {
 
                 appObjects.clear();
                 int a = 0;
-                for (int i = 0; i<100; i++) {
+                for (int i = 0; i < 100; i++) {
                     for (DataSnapshot appSnapshot : dataSnapshot.getChildren()) {
                         final AppObject appObject = appSnapshot.getValue(AppObject.class);
-                        if (appObject.getAppRating()==i) {
+                        if (appObject.getAppRating() == i) {
                             appObjects.add(a, new AppObject(appObject.getTitel(), appObject.getShortDesc(), appObject.getLongDesc(), appObject.getUserId(), appObject.getPackageName(), appObject.getAppRating(), appObject.getColor(), appObject.getCategory(), appObject.getAppTime(), appObject.getRootTitel(), appObject.getTextColor()));
                             a++;
 
@@ -83,100 +81,93 @@ public class BlankFragment extends Fragment {
                 recyclerView.setAdapter(myAdapter);
 
             }
-                @Override
-                public void onCancelled (DatabaseError databaseError){
 
-                }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
 
         });
 
 
-
-
-
-
-
-
-
-
         /**
 
-        int a=0;
-        boolean done = false;
+         int a=0;
+         boolean done = false;
 
-        while (done) {
+         while (done) {
 
-            if (appObjectsSort.size()==rating.length) {
-                done=true;
+         if (appObjectsSort.size()==rating.length) {
+         done=true;
 
-            }
-            else {
-                for (int b = 0; b==appObjects.size(); b++) {
+         }
+         else {
+         for (int b = 0; b==appObjects.size(); b++) {
 
-                    if ( rating[a] == appObjects.get(b).getAppRating()) {
-                        appObjectsSort.add(a, appObjects.get(b));
-                        a++;
-                        if (!(appObjectsSort.size()==appObjects.size())) {
-                        b=0;}
-                    }
-                 }
+         if ( rating[a] == appObjects.get(b).getAppRating()) {
+         appObjectsSort.add(a, appObjects.get(b));
+         a++;
+         if (!(appObjectsSort.size()==appObjects.size())) {
+         b=0;}
+         }
+         }
 
-            }
-
-
-
-
-        }
-        MyAdapter myAdapter = new MyAdapter(appObjectsSort);
-        recyclerView.setAdapter(myAdapter);
+         }
 
 
 
 
-
-        int[] rating = new int[appObjects.size()];
-        for (int i = 0; i>=appObjects.size(); i++) {
-            rating[i] = appObjects.get(i).getAppRating();
-        }
-        Arrays.sort(rating);
-
-
-        int c=0;
-        for (int b = 0; b>=appObjects.size(); b++) {
-
-
-            if (appObjects.get(b).getAppRating()==rating[c]) {
-                appObjectSort.add(c, appObjects.get(b));
-
-                if (c==rating.length) {
-
-
-
-                    if (appObjectSort.size()==appObjects.size()) {
-
-                        MyAdapter myAdapter = new MyAdapter(appObjectSort);
-                        recyclerView.setAdapter(myAdapter);
-
-                    }
-                    else {
-                        b=0;
-                    }
-
-                }
-                else {
-                    c++;
-                }
+         }
+         MyAdapter myAdapter = new MyAdapter(appObjectsSort);
+         recyclerView.setAdapter(myAdapter);
 
 
 
 
-            }
+
+         int[] rating = new int[appObjects.size()];
+         for (int i = 0; i>=appObjects.size(); i++) {
+         rating[i] = appObjects.get(i).getAppRating();
+         }
+         Arrays.sort(rating);
 
 
-        }
+         int c=0;
+         for (int b = 0; b>=appObjects.size(); b++) {
 
 
-        **/
+         if (appObjects.get(b).getAppRating()==rating[c]) {
+         appObjectSort.add(c, appObjects.get(b));
+
+         if (c==rating.length) {
+
+
+
+         if (appObjectSort.size()==appObjects.size()) {
+
+         MyAdapter myAdapter = new MyAdapter(appObjectSort);
+         recyclerView.setAdapter(myAdapter);
+
+         }
+         else {
+         b=0;
+         }
+
+         }
+         else {
+         c++;
+         }
+
+
+
+
+         }
+
+
+         }
+
+
+         **/
 
         return rootView;
     }

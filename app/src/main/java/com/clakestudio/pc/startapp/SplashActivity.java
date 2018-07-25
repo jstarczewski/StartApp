@@ -13,8 +13,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
             Intent MenuActivity = new Intent(this, StartActivity.class);
             startActivity(MenuActivity);
             finish();

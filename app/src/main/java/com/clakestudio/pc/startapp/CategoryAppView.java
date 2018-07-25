@@ -37,6 +37,7 @@ public class CategoryAppView extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(appObjects);
         recyclerView.setHasFixedSize(true);
         TextView textView = (TextView)findViewById(R.id.textViewCategory);
+        //new
         final String category = getIntent().getStringExtra("category");
         textView.setText(category);
 

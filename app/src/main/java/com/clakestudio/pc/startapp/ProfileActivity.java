@@ -263,7 +263,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onStop();
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+       SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         sharedPreferences.edit().putBoolean("profile", false).apply();
 
     }
