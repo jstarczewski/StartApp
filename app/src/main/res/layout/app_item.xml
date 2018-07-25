@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:id="@+id/card_view"
+    >
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:padding="@dimen/activity_horizontal_margin">
+
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:text="FSSD"
+                        android:paddingRight="2dp"
+                        android:id="@+id/textViewTitel" />
+
+
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:id="@+id/imageAvatar"
+                    android:layout_weight="1"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linearSpace"
+                android:layout_marginRight="@dimen/card_margin_side"
+                android:layout_marginLeft="@dimen/card_margin_side"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone"
+                android:background="@color/colorPrimary">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    android:background="@color/colorPrimaryDark"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:text="aa"
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/card_margin_side"
+                    android:layout_marginRight="@dimen/card_margin_side"
+                    android:paddingLeft="@dimen/card_margin_side"
+                    android:paddingRight="@dimen/card_margin_side"
+                    android:paddingBottom="@dimen/card_margin_side"
+                    android:layout_marginTop="@dimen/card_margin_side"
+                    android:layout_marginBottom="@dimen/card_margin_side"
+                    android:id="@+id/tvldesc"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rootTitelContainer"
+                    android:text="aa"
+                    android:visibility="gone"
+                    />
+
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+                <include
+                    layout="@layout/toolbar_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   >
+
+                </include>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/packageContainerTextView"
+                android:visibility="gone"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</android.support.v7.widget.CardView>

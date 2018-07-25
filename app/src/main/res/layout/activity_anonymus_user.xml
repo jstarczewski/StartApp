@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_anonymus_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.clakestudio.pc.startapp.AnonymusUserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+        <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            </android.support.v7.widget.Toolbar>
+
+
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_vertical_margin">
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:textSize="18sp"
+            android:text="@string/being_a_anonymous"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="@dimen/card_margin_side"
+            android:layout_marginLeft="@dimen/card_margin_side"
+            android:background="@color/colorPrimary">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                />
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:shadowColor="@color/colorPrimaryDark"
+            android:id="@+id/buttonProcced"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_height="wrap_content"
+            android:text="@string/let_s_go"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:background="#2196F3">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#2196F3"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="By tapping button named 'let's go' you agree to our terms of services and privacy policy!"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PRIVACY POLICY"
+            android:layout_margin="@dimen/card_margin_side"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/buttonPrivacy"
+            android:background="#2196F3"/>
+    </LinearLayout>
+
+</ScrollView>
