@@ -55,26 +55,25 @@ public class ActivityEditApp extends AppCompatActivity {
     private TextView editAppTextView;
     private int Color;
     private int textColor;
-    TextView textViewCategory;
- private   ProgressDialog progressDialog;
-    String titel;
+    private TextView textViewCategory;
+    private ProgressDialog progressDialog;
+    private String titel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_app_activity);
 
-        final Button submitApp = (Button)findViewById(R.id.butt);
-        final Button editColor = (Button)findViewById(R.id.buttColor);
+        final Button submitApp = (Button) findViewById(R.id.butt);
+        final Button editColor = (Button) findViewById(R.id.buttColor);
         editColor.setText("Edit color");
         submitApp.setText("Submit edit");
         TextView textViewEditInfo = (TextView) findViewById(R.id.editInfo);
         textViewEditInfo.setVisibility(View.VISIBLE);
         final StorageReference appAvatar = FirebaseStorage.getInstance().getReference("Avatars");
-        if (getIntent().getExtras()!=null){
-        titel  = getIntent().getExtras().getString("titel", "no");
-        }
-        else {
+        if (getIntent().getExtras() != null) {
+            titel = getIntent().getExtras().getString("titel", "no");
+        } else {
             titel = getSharedPreferences("prefs", Context.MODE_PRIVATE).getString("editRoot", "no");
         }
 
@@ -87,28 +86,28 @@ public class ActivityEditApp extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
-        textViewCategory = (TextView)findViewById(R.id.categoryTextView);
-        editAppTextView = (TextView)findViewById(R.id.appEditAdd);
+        textViewCategory = (TextView) findViewById(R.id.categoryTextView);
+        editAppTextView = (TextView) findViewById(R.id.appEditAdd);
         editAppTextView.setText("Edit app's properties");
-        final Button editTextColor = (Button)findViewById(R.id.buttTextColor);
+        final Button editTextColor = (Button) findViewById(R.id.buttTextColor);
         editTextColor.setText("Edit text color");
         AppReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot AppSnapshot: dataSnapshot.getChildren()) {
-                        AppObject appObject = AppSnapshot.getValue(AppObject.class);
-                        if (appObject.getRootTitel().equals(titel)) {
+                for (DataSnapshot AppSnapshot : dataSnapshot.getChildren()) {
+                    AppObject appObject = AppSnapshot.getValue(AppObject.class);
+                    if (appObject.getRootTitel().equals(titel)) {
 
-                            etTitel.setText(appObject.getTitel());
-                            etSdesc.setText(appObject.getShortDesc());
-                            etLdesc.setText(appObject.getLongDesc());
-                            etPackage.setText(appObject.getPackageName());
-                            Color = appObject.getColor();
-                            textViewCategory.setText(appObject.getCategory());
-                            editColor.setTextColor(Color);
-                            editTextColor.setTextColor(appObject.getTextColor());
-                            textViewCategory.setText(getSharedPreferences("prefs", Context.MODE_PRIVATE).getString("editCategory", appObject.getCategory()));
-                        }
+                        etTitel.setText(appObject.getTitel());
+                        etSdesc.setText(appObject.getShortDesc());
+                        etLdesc.setText(appObject.getLongDesc());
+                        etPackage.setText(appObject.getPackageName());
+                        Color = appObject.getColor();
+                        textViewCategory.setText(appObject.getCategory());
+                        editColor.setTextColor(Color);
+                        editTextColor.setTextColor(appObject.getTextColor());
+                        textViewCategory.setText(getSharedPreferences("prefs", Context.MODE_PRIVATE).getString("editCategory", appObject.getCategory()));
+                    }
                 }
             }
 
@@ -142,23 +141,22 @@ public class ActivityEditApp extends AppCompatActivity {
 
 
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                submitApp.setVisibility(View.VISIBLE);
-                                progressDialog.dismiss();
-                                getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putBoolean("edit", false).apply();
-                                getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().remove("editRoot").apply();
-                                getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().remove("editCategory").apply();
-                                Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intentMain);
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        submitApp.setVisibility(View.VISIBLE);
+                                        progressDialog.dismiss();
+                                        getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putBoolean("edit", false).apply();
+                                        getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().remove("editRoot").apply();
+                                        getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().remove("editCategory").apply();
+                                        Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intentMain);
 
-                            }
-                        }
-                    });
+                                    }
+                                }
+                            });
 
-                }
-                else {
+                } else {
                     submitApp.setVisibility(View.INVISIBLE);
                     appAvatar.child(titel).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -199,9 +197,6 @@ public class ActivityEditApp extends AppCompatActivity {
                 }
 
 
-
-
-
             }
         });
         textViewCategory.setOnClickListener(new View.OnClickListener() {
@@ -240,7 +235,6 @@ public class ActivityEditApp extends AppCompatActivity {
             public void onClick(View view) {
 
 
-
                 ColorChooserDialog dialog = new ColorChooserDialog(ActivityEditApp.this);
                 dialog.setTitle("Choose color");
                 dialog.setColorListener(new ColorListener() {
@@ -256,16 +250,15 @@ public class ActivityEditApp extends AppCompatActivity {
             }
         });
 
-      ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (etTitel.getText().toString().length()==0) {
-                    Toast.makeText(getApplicationContext(),"Declare title of your app first!",Toast.LENGTH_LONG).show();
-                }
-                else {
+                if (etTitel.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Declare title of your app first!", Toast.LENGTH_LONG).show();
+                } else {
                     Intent gallery_Intent = new Intent(getApplicationContext(), GalleryUtil.class);
                     gallery_Intent.putExtra("titel", titel);
                     startActivityForResult(gallery_Intent, GALLERY_ACTIVITY_CODE);
@@ -273,6 +266,7 @@ public class ActivityEditApp extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -299,8 +293,6 @@ public class ActivityEditApp extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-
 
 
         getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().remove("editRoot").apply();

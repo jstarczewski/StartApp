@@ -34,15 +34,14 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    DatabaseReference appReference = FirebaseDatabase.getInstance().getReference("Apps");
-    String passOld;
-    String passNew;
-    String email;
-    String oldMail;
-    String newMail;
-    Button logOut;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference appReference = FirebaseDatabase.getInstance().getReference("Apps");
+    private String passOld;
+    private String passNew;
+    private String email;
+    private String oldMail;
+    private String newMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,8 +171,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        logOut = (Button)findViewById(R.id.buttonLogOut);
-        logOut.setOnClickListener( new View.OnClickListener() {
+        Button logOut = (Button) findViewById(R.id.buttonLogOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
