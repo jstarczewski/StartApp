@@ -41,20 +41,20 @@ import java.io.File;
 public class ActivityEditApp extends AppCompatActivity {
 
 
-    DatabaseReference AppReference = FirebaseDatabase.getInstance().getReference("Apps");
-    DatabaseReference RatingReference = FirebaseDatabase.getInstance().getReference("AppRatings");
+    private DatabaseReference AppReference = FirebaseDatabase.getInstance().getReference("Apps");
+    private DatabaseReference RatingReference = FirebaseDatabase.getInstance().getReference("AppRatings");
     private final int GALLERY_ACTIVITY_CODE = 200;
-    StorageReference appAvatar = FirebaseStorage.getInstance().getReference("Avatars");
+    private StorageReference appAvatar = FirebaseStorage.getInstance().getReference("Avatars");
 
 
-    String picturePath;
-    EditText etTitel;
-    EditText etSdesc;
-    EditText etLdesc;
-    EditText etPackage;
-    TextView editAppTextView;
-    int Color;
-    int textColor;
+    private String picturePath;
+    private EditText etTitel;
+    private EditText etSdesc;
+    private EditText etLdesc;
+    private EditText etPackage;
+    private TextView editAppTextView;
+    private int Color;
+    private int textColor;
     TextView textViewCategory;
  private   ProgressDialog progressDialog;
     String titel;

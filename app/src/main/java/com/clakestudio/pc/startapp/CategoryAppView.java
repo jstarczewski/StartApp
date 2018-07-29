@@ -23,7 +23,7 @@ import java.util.List;
 
 public class CategoryAppView extends AppCompatActivity {
 
-    DatabaseReference appReference = FirebaseDatabase.getInstance().getReference("Apps");
+    private DatabaseReference appReference = FirebaseDatabase.getInstance().getReference("Apps");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,9 +67,7 @@ public class CategoryAppView extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-
-        startActivity(intent);
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }
