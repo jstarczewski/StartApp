@@ -14,12 +14,13 @@ public class RatingObject {
     private String AppRating;
 
 
-    RatingObject() {}
+    RatingObject() {
+    }
 
     RatingObject(String id, String appRating, String titel) {
-        this.Id=id;
-        this.AppRating=appRating;
-        this.Titel=titel;
+        this.Id = id;
+        this.AppRating = appRating;
+        this.Titel = titel;
     }
 
     public String getRating() {
@@ -33,6 +34,7 @@ public class RatingObject {
     public void setAppRating(String appRating) {
         AppRating = appRating;
     }
+
     public String getId() {
         return Id;
     }
@@ -40,6 +42,7 @@ public class RatingObject {
     public void setId(String id) {
         Id = id;
     }
+
     public String getTitel() {
         return Titel;
     }
@@ -47,7 +50,6 @@ public class RatingObject {
     public void setTitel(String titel) {
         Titel = titel;
     }
-
 
 
 }

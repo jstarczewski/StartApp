@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
 import static java.lang.Math.toIntExact;
 
 import java.lang.reflect.Array;
@@ -59,16 +60,14 @@ public class TimeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragemnt_blank, container, false);
-        final RecyclerView recyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         appObjects = new ArrayList<>();
 
-        appObjectsSort  = new ArrayList<>();
+        appObjectsSort = new ArrayList<>();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-
-
 
 
         appReference.addValueEventListener(new ValueEventListener() {
@@ -78,7 +77,7 @@ public class TimeFragment extends Fragment {
 
                 appObjects.clear();
                 int a = 0;
-                for (int i = 0; i<100; i++) {
+                for (int i = 0; i < 100; i++) {
                     for (DataSnapshot appSnapshot : dataSnapshot.getChildren()) {
                         final AppObject appObject = appSnapshot.getValue(AppObject.class);
                         if (appObject.getAppTime() == i) {
@@ -94,20 +93,13 @@ public class TimeFragment extends Fragment {
                 MyAdapter myAdapter = new MyAdapter(appObjects);
                 recyclerView.setAdapter(myAdapter);
             }
+
             @Override
-            public void onCancelled (DatabaseError databaseError){
+            public void onCancelled(DatabaseError databaseError) {
 
             }
 
         });
-
-
-
-
-
-
-
-
 
 
         /**

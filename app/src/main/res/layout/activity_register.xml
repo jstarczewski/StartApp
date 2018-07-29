@@ -5,126 +5,118 @@
     android:layout_height="wrap_content">
 
 
-
-
-
-<LinearLayout
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/registerToolbar">
-
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/activity_vertical_margin">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
-
-        <EditText
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:inputType="textEmailAddress"
-            android:hint="@string/e_mail"
-            android:ems="10"
-            android:id="@+id/editTextEmail" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:hint="@string/password"
-            android:ems="10"
-            android:id="@+id/editTextPassword" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/registerToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-        <Button
-            android:text="@string/create_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:padding="8dp"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginEnd="@dimen/activity_vertical_margin"
-            android:background="@color/colorPrimary"
-            android:textColor="#FFFFFF"
-            android:id="@+id/buttonCreateAccount" />
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_vertical_margin"
-            android:background="#2196F3">
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
 
-            <Space
+
+            <EditText
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:ems="10"
+                android:hint="@string/e_mail"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+
+
+            <Button
+                android:id="@+id/buttonCreateAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@color/colorPrimary"
+                android:padding="8dp"
+                android:text="@string/create_account"
+                android:textColor="#FFFFFF" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:background="#2196F3"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#2196F3" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonPrivacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin_side"
+                android:background="#2196F3"
+                android:text="PRIVACY POLICY"
+                android:textColor="@color/colorAccent" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/card_margin_side"
+                android:layout_marginRight="@dimen/card_margin_side"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/hey_there_buddy_just_in_case_you_are_interested_in_posting_your_own_app_register_using_same_e_mail_you_provided_in_you_google_developer_account"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
                 />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin_side"
+                android:text="By tapping button named 'create account' you agree to our terms of services and privacy policy!"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
         </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PRIVACY POLICY"
-            android:layout_margin="@dimen/card_margin_side"
-            android:textColor="@color/colorAccent"
-            android:id="@+id/buttonPrivacy"
-            android:background="#2196F3"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginLeft="@dimen/card_margin_side"
-            android:layout_marginRight="@dimen/card_margin_side"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/hey_there_buddy_just_in_case_you_are_interested_in_posting_your_own_app_register_using_same_e_mail_you_provided_in_you_google_developer_account"
-
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/card_margin_side"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:text="By tapping button named 'create account' you agree to our terms of services and privacy policy!"/>
-
-
 
 
     </LinearLayout>
-
-
-
-</LinearLayout>
 
 </ScrollView>

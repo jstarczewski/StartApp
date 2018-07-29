@@ -20,11 +20,11 @@ public class AnonymusUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anonymus_user);
 
-        buttonGo = (Button)findViewById(R.id.buttonProcced);
+        buttonGo = (Button) findViewById(R.id.buttonProcced);
 
         final SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
 
-        Button privacyButton = (Button)findViewById(R.id.buttonPrivacy);
+        Button privacyButton = (Button) findViewById(R.id.buttonPrivacy);
 
         privacyButton.setOnClickListener(new View.OnClickListener() {
             @Override

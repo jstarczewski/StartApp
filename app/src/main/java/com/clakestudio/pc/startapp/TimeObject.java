@@ -6,15 +6,15 @@ package com.clakestudio.pc.startapp;
 
 public class TimeObject {
 
-   private int Time;
+    private int Time;
 
 
-
-    TimeObject(){}
+    TimeObject() {
+    }
 
 
     TimeObject(int time) {
-        this.Time=time;
+        this.Time = time;
     }
 
     public int getTime() {

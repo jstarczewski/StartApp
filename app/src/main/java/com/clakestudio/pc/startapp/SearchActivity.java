@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-
 import java.util.ArrayList;
 
 import java.util.List;
@@ -35,22 +34,21 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.searchRecyclerView);
-        final List<AppObject>appObjects = new ArrayList<>();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.searchRecyclerView);
+        final List<AppObject> appObjects = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         MyAdapter myAdapter = new MyAdapter(appObjects);
         recyclerView.setHasFixedSize(true);
 
-        TextView textView = (TextView)findViewById(R.id.textViewHastag);
+        TextView textView = (TextView) findViewById(R.id.textViewHastag);
 
         final String hashTag = getIntent().getStringExtra("hashTag");
 
         if (hashTag.contains("#")) {
             textView.setText(hashTag);
-        }
-        else {
-        textView.setText("#"+hashTag);
+        } else {
+            textView.setText("#" + hashTag);
         }
         appReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -74,8 +72,6 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
         recyclerView.setAdapter(myAdapter);

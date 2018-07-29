@@ -14,10 +14,10 @@ public class CategoryObjcet {
         Category = category;
     }
 
-    private    String Category;
+    private String Category;
 
-    CategoryObjcet(String category){
-        this.Category=category;
+    CategoryObjcet(String category) {
+        this.Category = category;
     }
 
 }

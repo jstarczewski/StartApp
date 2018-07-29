@@ -30,13 +30,13 @@ public class CategoryAppView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_app_view);
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.searchRecyclerView);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.searchRecyclerView);
         final List<AppObject> appObjects = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         MyAdapter myAdapter = new MyAdapter(appObjects);
         recyclerView.setHasFixedSize(true);
-        TextView textView = (TextView)findViewById(R.id.textViewCategory);
+        TextView textView = (TextView) findViewById(R.id.textViewCategory);
         //new
         final String category = getIntent().getStringExtra("category");
         textView.setText(category);

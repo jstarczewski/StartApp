@@ -12,7 +12,7 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-        Button buttonBack = (Button)findViewById(R.id.textView2);
+        Button buttonBack = (Button) findViewById(R.id.textView2);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

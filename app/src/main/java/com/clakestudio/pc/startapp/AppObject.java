@@ -6,38 +6,38 @@ package com.clakestudio.pc.startapp;
 
 public class AppObject {
 
-   private String Titel;
-   private String ShortDesc;
+    private String Titel;
+    private String ShortDesc;
     private String LongDesc;
     private String PackageName;
-   private String UserId;
+    private String UserId;
     private String Category;
     private int Color;
     private int AppRating;
     private int AppTime;
 
-    private  int TextColor;
+    private int TextColor;
     private String RootTitel;
+
     AppObject() {
 
     }
 
 
-
     AppObject(String titel, String shortDesc, String longDesc, String packageName,
               String userId, int appRating, int color, String category,
               int appTime, String rootTitel, int textColor) {
-        this.Titel=titel;
-        this.ShortDesc=shortDesc;
-        this.LongDesc=longDesc;
-        this.PackageName=packageName;
-        this.UserId=userId;
-        this.AppRating=appRating;
-        this.Color=color;
-        this.Category =category;
-        this.AppTime=appTime;
-        this.RootTitel=rootTitel;
-        this.TextColor=textColor;
+        this.Titel = titel;
+        this.ShortDesc = shortDesc;
+        this.LongDesc = longDesc;
+        this.PackageName = packageName;
+        this.UserId = userId;
+        this.AppRating = appRating;
+        this.Color = color;
+        this.Category = category;
+        this.AppTime = appTime;
+        this.RootTitel = rootTitel;
+        this.TextColor = textColor;
 
     }
 
@@ -80,6 +80,7 @@ public class AppObject {
     public void setUserId(String userId) {
         UserId = userId;
     }
+
     public int getAppRating() {
         return AppRating;
     }
@@ -87,6 +88,7 @@ public class AppObject {
     public void setAppRating(int appRating) {
         AppRating = appRating;
     }
+
     public int getColor() {
         return Color;
     }
@@ -102,6 +104,7 @@ public class AppObject {
     public void setCategory(String category) {
         Category = category;
     }
+
     public int getAppTime() {
         return AppTime;
     }
@@ -125,8 +128,6 @@ public class AppObject {
     public void setTextColor(int textColor) {
         TextColor = textColor;
     }
-
-
 
 
 }

@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.volokh.danylo.hashtaghelper.HashTagHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,17 +57,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     String packageName;
     private HashTagHelper mTextHashTagHelper;
     ProgressDialog progressDialog;
-    int i =0;
+    int i = 0;
     String rootTitel;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
     List<AppObject> appObjects = new ArrayList<>();
-    MyAdapter(List<AppObject> appObjects) {
-        this.appObjects=appObjects;
-    }
 
+    MyAdapter(List<AppObject> appObjects) {
+        this.appObjects = appObjects;
+    }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -87,18 +88,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            cardView = (CardView)itemView.findViewById(R.id.card_view);
-            textView = (TextView)itemView.findViewById(R.id.textViewTitel);
-            textViewTitel = (TextView)itemView.findViewById(R.id.toolbar_titel_text);
-            imageView = (ImageView)itemView.findViewById(R.id.imageAvatar);
+            cardView = (CardView) itemView.findViewById(R.id.card_view);
+            textView = (TextView) itemView.findViewById(R.id.textViewTitel);
+            textViewTitel = (TextView) itemView.findViewById(R.id.toolbar_titel_text);
+            imageView = (ImageView) itemView.findViewById(R.id.imageAvatar);
             buttonInstall = (ImageButton) itemView.findViewById(R.id.buttonInstall);
-            textViewContainer = (TextView)itemView.findViewById(R.id.packageContainerTextView);
-            toolbarBottom = (Toolbar)itemView.findViewById(R.id.toolbar_bottom);
-            buttonViewDesc = (ImageButton)itemView.findViewById(R.id.buttonViewDesc);
-            textViewLongDesc = (TextView)itemView.findViewById(R.id.tvldesc);
-            buttonRating = (ImageButton)itemView.findViewById(R.id.buttonRating);
-            linearSpace = (LinearLayout)itemView.findViewById(R.id.linearSpace);
-            rootTitel = (TextView)itemView.findViewById(R.id.rootTitelContainer);
+            textViewContainer = (TextView) itemView.findViewById(R.id.packageContainerTextView);
+            toolbarBottom = (Toolbar) itemView.findViewById(R.id.toolbar_bottom);
+            buttonViewDesc = (ImageButton) itemView.findViewById(R.id.buttonViewDesc);
+            textViewLongDesc = (TextView) itemView.findViewById(R.id.tvldesc);
+            buttonRating = (ImageButton) itemView.findViewById(R.id.buttonRating);
+            linearSpace = (LinearLayout) itemView.findViewById(R.id.linearSpace);
+            rootTitel = (TextView) itemView.findViewById(R.id.rootTitelContainer);
 
         }
     }
@@ -121,20 +122,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             @Override
             public void onClick(View view) {
 
-                if (context.getSharedPreferences("prefs", Context.MODE_PRIVATE).getBoolean("profile", false)){
+                if (context.getSharedPreferences("prefs", Context.MODE_PRIVATE).getBoolean("profile", false)) {
                     Intent editAppIntent = new Intent(context, ActivityEditApp.class);
                     editAppIntent.putExtra("titel", myViewHolder.rootTitel.getText().toString());
-                    context.startActivity(editAppIntent);}
+                    context.startActivity(editAppIntent);
+                }
             }
         });
-
 
 
         appReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot appSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot appSnapshot : dataSnapshot.getChildren()) {
 
                     AppObject appObject = appSnapshot.getValue(AppObject.class);
 
@@ -149,7 +150,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         myViewHolder.textViewContainer.setText(appObject.getPackageName());
 
                     }
-
 
 
                 }
@@ -167,7 +167,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id="+myViewHolder.textViewContainer.getText().toString()));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + myViewHolder.textViewContainer.getText().toString()));
                 context.startActivity(intent);
 
             }
@@ -191,11 +191,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 if (context.getSharedPreferences("prefs", Context.MODE_PRIVATE).getBoolean("profile", false)) {
 
 
-
                     final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                     View viewAlertDialog = LayoutInflater.from(context).inflate(R.layout.dialog_delete, null);
 
-                    Button buttonDelete = (Button)viewAlertDialog.findViewById(R.id.buttonDelete);
+                    Button buttonDelete = (Button) viewAlertDialog.findViewById(R.id.buttonDelete);
                     buttonDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -203,8 +202,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                             alertDialog.dismiss();
 
 
-                            if (firebaseUser!=null) {
-
+                            if (firebaseUser != null) {
 
 
                                 appAvatar.child(myViewHolder.rootTitel.getText().toString()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -225,8 +223,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                                     }
                                 });
 
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(context, "You are not logged in", Toast.LENGTH_LONG).show();
                             }
 
@@ -236,10 +233,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     alertDialog.show();
 
 
-
-
                 }
-
 
 
                 return true;
@@ -259,22 +253,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        for (DataSnapshot ratingSnapshot: dataSnapshot.getChildren()) {
+                        for (DataSnapshot ratingSnapshot : dataSnapshot.getChildren()) {
                             RatingObject ratingObject = ratingSnapshot.getValue(RatingObject.class);
                             if (ratingObject.getTitel().equals(titel)) {
                                 if (!ratingObject.getId().contains(firebaseUser.getUid())) {
 
-                                    appRating.child(titel).child("id").setValue(ratingObject.getId()+" "+firebaseUser.getUid());
-                                    appReference.child(titel).child("appRating").setValue((Integer.parseInt(ratingObject.getRating())-1));
-                                    appRating.child(titel).child("rating").setValue(Integer.toString((Integer.parseInt(ratingObject.getRating())-1)));
+                                    appRating.child(titel).child("id").setValue(ratingObject.getId() + " " + firebaseUser.getUid());
+                                    appReference.child(titel).child("appRating").setValue((Integer.parseInt(ratingObject.getRating()) - 1));
+                                    appRating.child(titel).child("rating").setValue(Integer.toString((Integer.parseInt(ratingObject.getRating()) - 1)));
 
 
-                                }
-                                else {
+                                } else {
                                     String idnew = ratingObject.getId().replace(firebaseUser.getUid(), "");
                                     appRating.child(titel).child("id").setValue(idnew);
-                                    appReference.child(titel).child("appRating").setValue((Integer.parseInt(ratingObject.getRating())+1));
-                                    appRating.child(titel).child("rating").setValue(Integer.toString((Integer.parseInt(ratingObject.getRating())+1)));
+                                    appReference.child(titel).child("appRating").setValue((Integer.parseInt(ratingObject.getRating()) + 1));
+                                    appRating.child(titel).child("rating").setValue(Integer.toString((Integer.parseInt(ratingObject.getRating()) + 1)));
 
                                 }
 
@@ -294,9 +287,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 });
 
 
-
-
-
             }
         });
 
@@ -307,8 +297,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         if (context.getSharedPreferences("prefs", Context.MODE_PRIVATE).getBoolean("anonymous", false)) {
             myViewHolder.buttonRating.setVisibility(View.GONE);
-        }
-        else {
+        } else {
 
             appRating.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -340,7 +329,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
 
-
         myViewHolder.buttonViewDesc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -348,13 +336,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Animation fade = AnimationUtils.loadAnimation(context, R.anim.fade_out_long);
                 Animation fadeIn = AnimationUtils.loadAnimation(context, R.anim.fade_in_long);
 
-                if (myViewHolder.textViewLongDesc.getVisibility()==View.GONE){
+                if (myViewHolder.textViewLongDesc.getVisibility() == View.GONE) {
                     myViewHolder.linearSpace.startAnimation(fadeIn);
                     myViewHolder.linearSpace.setVisibility(View.VISIBLE);
                     myViewHolder.textViewLongDesc.startAnimation(fadeIn);
                     myViewHolder.textViewLongDesc.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     myViewHolder.linearSpace.startAnimation(fade);
                     myViewHolder.linearSpace.setVisibility(View.GONE);
                     myViewHolder.textViewLongDesc.startAnimation(fade);
@@ -373,7 +360,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
 
-
         holder.textViewTitel.setText(appObjects.get(position).getTitel());
         holder.textView.setText(appObjects.get(position).getShortDesc());
         holder.textViewContainer.setText(appObjects.get(position).getPackageName());
@@ -381,14 +367,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.rootTitel.setText(appObjects.get(position).getRootTitel());
 
 
-
-
-
         Glide.with(context)
                 .using(new FirebaseImageLoader())
                 .load(appAvatar.child(holder.rootTitel.getText().toString()))
                 .into(holder.imageView);
-
 
 
     }

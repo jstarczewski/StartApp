@@ -19,7 +19,9 @@ import java.util.ArrayList;
 public class CategoryFragment extends Fragment {
 
     Context context;
-    public CategoryFragment() {}
+
+    public CategoryFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,8 +37,7 @@ public class CategoryFragment extends Fragment {
         context = container.getContext();
 
 
-
-        final RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         ArrayList<categoryObject> categoryObjects = new ArrayList<>();
 
@@ -91,14 +92,11 @@ public class CategoryFragment extends Fragment {
         categoryObjects.add(new categoryObject("Games:Word"));
 
 
-
-
         CategoriesAdapter categoriesAdapter = new CategoriesAdapter(categoryObjects);
         recyclerView.setAdapter(categoriesAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-
 
 
         return view;

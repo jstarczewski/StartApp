@@ -91,12 +91,11 @@ public class ProfileActivity extends AppCompatActivity {
         TextView textViewApps = (TextView) findViewById(R.id.textViewYourApps);
         recyclerView.setAdapter(myAdapter);
 
-        if (appObjects.size()<0) {
+        if (appObjects.size() < 0) {
             textViewApps.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
-        }
-        else {
-            TextView textViewMyApps = (TextView)findViewById(R.id.myAppsTextView);
+        } else {
+            TextView textViewMyApps = (TextView) findViewById(R.id.myAppsTextView);
             textViewMyApps.setText("LongClick on avatar to delete it, tap to edit properties");
         }
     }
@@ -109,7 +108,7 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         sharedPreferences.edit().putBoolean("profile", true).apply();
-        Button buttonChangePassword = (Button)findViewById(R.id.buttonChangePassword);
+        Button buttonChangePassword = (Button) findViewById(R.id.buttonChangePassword);
         buttonChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,9 +116,9 @@ public class ProfileActivity extends AppCompatActivity {
                 final AlertDialog alertDialog = new AlertDialog.Builder(ProfileActivity.this).create();
                 View viewAlertDialog = LayoutInflater.from(alertDialog.getContext()).inflate(R.layout.change_password_dialo, null);
 
-                final EditText editTextOldPass = (EditText)viewAlertDialog.findViewById(R.id.editTextOldPassword);
-                final EditText edtTextNewPass = (EditText)viewAlertDialog.findViewById(R.id.editTextNewPassword);
-                Button button = (Button)viewAlertDialog.findViewById(R.id.dialogChangeEmail);
+                final EditText editTextOldPass = (EditText) viewAlertDialog.findViewById(R.id.editTextOldPassword);
+                final EditText edtTextNewPass = (EditText) viewAlertDialog.findViewById(R.id.editTextNewPassword);
+                Button button = (Button) viewAlertDialog.findViewById(R.id.dialogChangeEmail);
 
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -127,7 +126,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                         passOld = editTextOldPass.getText().toString();
                         passNew = edtTextNewPass.getText().toString();
-                        if (firebaseUser!= null) {
+                        if (firebaseUser != null) {
                             email = firebaseUser.getEmail();
 
 
@@ -155,8 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 }
 
                             });
-                        }
-                        else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "You are not logged in", Toast.LENGTH_LONG).show();
                         }
 
@@ -167,27 +165,26 @@ public class ProfileActivity extends AppCompatActivity {
                 alertDialog.show();
 
 
-
             }
         });
 
         Button logOut = (Button) findViewById(R.id.buttonLogOut);
         logOut.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                                      @Override
+                                      public void onClick(View view) {
 
-                        firebaseAuth.signOut();
-                        Toast.makeText(getApplicationContext(),"User logged out", Toast.LENGTH_LONG).show();
-                        Intent startIntent = new Intent(getApplicationContext(), StartActivity.class);
-                        startActivity(startIntent);
-                        finish();
+                                          firebaseAuth.signOut();
+                                          Toast.makeText(getApplicationContext(), "User logged out", Toast.LENGTH_LONG).show();
+                                          Intent startIntent = new Intent(getApplicationContext(), StartActivity.class);
+                                          startActivity(startIntent);
+                                          finish();
 
 
-                    }
-                }
+                                      }
+                                  }
         );
 
-        Button buttonEmail = (Button)findViewById(R.id.buttonChangeEmail);
+        Button buttonEmail = (Button) findViewById(R.id.buttonChangeEmail);
         buttonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -196,20 +193,19 @@ public class ProfileActivity extends AppCompatActivity {
                 View viewAlerDialogEmail = LayoutInflater.from(alertDialogEmail.getContext()).inflate(R.layout.change_email_dialog, null);
 
 
-                final EditText editTextOldEmail = (EditText)viewAlerDialogEmail.findViewById(R.id.editTextOldEmail);
-                final EditText edtTextNewEmail = (EditText)viewAlerDialogEmail.findViewById(R.id.editTextNewEmail);
-                final EditText editTextCurrenPassword = (EditText)viewAlerDialogEmail.findViewById(R.id.editTextCurrenPassword);
-                Button button = (Button)viewAlerDialogEmail.findViewById(R.id.dialogChangeEmail);
+                final EditText editTextOldEmail = (EditText) viewAlerDialogEmail.findViewById(R.id.editTextOldEmail);
+                final EditText edtTextNewEmail = (EditText) viewAlerDialogEmail.findViewById(R.id.editTextNewEmail);
+                final EditText editTextCurrenPassword = (EditText) viewAlerDialogEmail.findViewById(R.id.editTextCurrenPassword);
+                Button button = (Button) viewAlerDialogEmail.findViewById(R.id.dialogChangeEmail);
 
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                        oldMail =  editTextOldEmail.getText().toString();
+                        oldMail = editTextOldEmail.getText().toString();
                         newMail = edtTextNewEmail.getText().toString();
 
-                        if (firebaseUser!=null && oldMail.equals(firebaseUser.getEmail())) {
-
+                        if (firebaseUser != null && oldMail.equals(firebaseUser.getEmail())) {
 
 
                             AuthCredential authCredential = EmailAuthProvider.getCredential(oldMail, editTextCurrenPassword.getText().toString());
@@ -228,8 +224,7 @@ public class ProfileActivity extends AppCompatActivity {
                                                     onStart();
 
 
-                                                }
-                                                else {
+                                                } else {
                                                     Toast.makeText(getApplicationContext(), "Something went wrong with changing e-mail", Toast.LENGTH_LONG).show();
                                                 }
 
@@ -238,8 +233,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         });
 
 
-                                    }
-                                    else {
+                                    } else {
                                         Toast.makeText(getApplicationContext(), "You are not logged in!", Toast.LENGTH_LONG).show();
 
                                     }
@@ -257,12 +251,13 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
     protected void onStop() {
         super.onStop();
 
 
-       SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         sharedPreferences.edit().putBoolean("profile", false).apply();
 
     }
