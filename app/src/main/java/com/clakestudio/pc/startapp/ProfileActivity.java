@@ -96,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.GONE);
         } else {
             TextView textViewMyApps = (TextView) findViewById(R.id.myAppsTextView);
-            textViewMyApps.setText("LongClick on avatar to delete it, tap to edit properties");
+            textViewMyApps.setText(R.string.long_click_on_avatar_to_delete_it);
         }
     }
 
@@ -139,23 +139,23 @@ public class ProfileActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(getApplicationContext(), "Password changed", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplicationContext(), R.string.password_changed, Toast.LENGTH_LONG).show();
                                                     alertDialog.dismiss();
                                                 } else {
-                                                    Toast.makeText(getApplicationContext(), "Something went wrong with changing password", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplicationContext(), R.string.something_went_wrong_with_changing_password, Toast.LENGTH_LONG).show();
                                                 }
 
                                             }
                                         });
 
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Unable to authenticate", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), R.string.unable_to_authenticate, Toast.LENGTH_LONG).show();
                                     }
                                 }
 
                             });
                         } else {
-                            Toast.makeText(getApplicationContext(), "You are not logged in", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), R.string.you_are_not_logged_in, Toast.LENGTH_LONG).show();
                         }
 
 
@@ -174,7 +174,7 @@ public class ProfileActivity extends AppCompatActivity {
                                       public void onClick(View view) {
 
                                           firebaseAuth.signOut();
-                                          Toast.makeText(getApplicationContext(), "User logged out", Toast.LENGTH_LONG).show();
+                                          Toast.makeText(getApplicationContext(), R.string.user_logged_out, Toast.LENGTH_LONG).show();
                                           Intent startIntent = new Intent(getApplicationContext(), StartActivity.class);
                                           startActivity(startIntent);
                                           finish();
@@ -219,13 +219,13 @@ public class ProfileActivity extends AppCompatActivity {
 
                                                 if (task.isSuccessful()) {
 
-                                                    Toast.makeText(getApplicationContext(), "E-mail changed", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplicationContext(), R.string.email_changed, Toast.LENGTH_LONG).show();
                                                     alertDialogEmail.dismiss();
                                                     onStart();
 
 
                                                 } else {
-                                                    Toast.makeText(getApplicationContext(), "Something went wrong with changing e-mail", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplicationContext(), R.string.something_went_wrong_with_chaning_email, Toast.LENGTH_LONG).show();
                                                 }
 
 
@@ -234,7 +234,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "You are not logged in!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), R.string.you_are_not_logged_in, Toast.LENGTH_LONG).show();
 
                                     }
                                 }

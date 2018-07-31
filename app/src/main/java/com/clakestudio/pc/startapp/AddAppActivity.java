@@ -196,7 +196,7 @@ public class AddAppActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (etTitel.getText().toString().length() == 0) {
-                    Toast.makeText(getApplicationContext(), "Declare title of your app first!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.declare_title_of_your_arr_first, Toast.LENGTH_LONG).show();
                 } else {
                     Intent gallery_Intent = new Intent(getApplicationContext(), GalleryUtil.class);
                     gallery_Intent.putExtra("titel", etTitel.getText().toString());
@@ -211,7 +211,7 @@ public class AddAppActivity extends AppCompatActivity {
 
 
                 ColorChooserDialog dialog = new ColorChooserDialog(AddAppActivity.this);
-                dialog.setTitle("Choose color");
+                dialog.setTitle(R.string.choose_color);
                 dialog.setColorListener(new ColorListener() {
                     @Override
                     public void OnColorClick(View v, int color) {
@@ -230,7 +230,7 @@ public class AddAppActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ColorChooserDialog dialog = new ColorChooserDialog(AddAppActivity.this);
-                dialog.setTitle("Choose color");
+                dialog.setTitle(R.string.choose_color);
                 dialog.setColorListener(new ColorListener() {
                     @Override
                     public void OnColorClick(View v, int color) {
@@ -255,7 +255,7 @@ public class AddAppActivity extends AppCompatActivity {
 
                 picturePath = data.getStringExtra("picturePath");
 
-                Toast.makeText(getApplicationContext(), "Avatar added, remember to tap submit after filling other properties", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.avatar_added_remember_to_tap_submit_after, Toast.LENGTH_LONG).show();
 
             }
 
@@ -271,10 +271,10 @@ public class AddAppActivity extends AppCompatActivity {
         switch (requestCode) {
             case READ_STORAGE_PERMISSION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.permission_granted, Toast.LENGTH_SHORT).show();
                     onStart();
                 } else {
-                    Toast.makeText(this, "Permission not Granted :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.permission_not_granted, Toast.LENGTH_SHORT).show();
 
                 }
                 return;

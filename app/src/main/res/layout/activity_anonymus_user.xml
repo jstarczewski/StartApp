@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="By tapping button named 'let's go' you agree to our terms of services and privacy policy!"
+            android:text="@string/by_tapping_button_named_let_s_go_you_agree_to_our_terms_of_services_and_privacy_policy"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_margin_side"
             android:background="#2196F3"
-            android:text="PRIVACY POLICY"
+            android:text="@string/privacy_policy_upper_case"
             android:textColor="@color/colorAccent" />
     </LinearLayout>
 

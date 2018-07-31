@@ -76,16 +76,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean checkEmailAndPasswordCorrectness(String email, String password) {
         if (email.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Puste pole e-mail", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.email_is_empty, Toast.LENGTH_LONG).show();
             return false;
         } else if (!email.contains("@")) {
-            Toast.makeText(getApplicationContext(), "Pole e-mail nie zawiera znaku @", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.email_does_not_contain, Toast.LENGTH_LONG).show();
             return false;
         } else if (password.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Puste pole hasła", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.empty_password, Toast.LENGTH_LONG).show();
             return false;
         } else if (password.length() >= 8) {
-            Toast.makeText(getApplicationContext(), "Hasło musi być dłuższe niż 8 znaków", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.password_must_be_longer_than, Toast.LENGTH_LONG).show();
             return false;
         } else {
             progressDialog.show();
@@ -100,12 +100,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "User registered", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.user_registered, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Something went wrong :(", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.something_went_wrong, Toast.LENGTH_LONG).show();
                 }
 
             }

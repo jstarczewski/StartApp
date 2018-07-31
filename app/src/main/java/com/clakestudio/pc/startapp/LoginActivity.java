@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextLoginPassword = (EditText) findViewById(R.id.editTextLoginPassword);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loggin in");
+        progressDialog.setMessage(getString(R.string.loggin_in));
 
         Button buttonLogIn = (Button) findViewById(R.id.buttonLogIn);
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (checkEmailAndPasswordCorrectness(email, password)) {
                     logInWithEmailAndPassword(email, password);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Invalid email/password lenght must be greater than 0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.invalid_email_or_password, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -69,12 +69,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.logged_in, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Something went wrong :(", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.something_went_wrong, Toast.LENGTH_LONG).show();
                 }
 
 

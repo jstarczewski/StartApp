@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -83,7 +82,7 @@
                     android:paddingBottom="@dimen/card_margin_side"
                     android:paddingLeft="@dimen/card_margin_side"
                     android:paddingRight="@dimen/card_margin_side"
-                    android:text="aa"
+                    android:text="@string/aa"
                     android:textColor="#000000"
                     android:visibility="gone" />
 
@@ -91,7 +90,7 @@
                     android:id="@+id/rootTitelContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="aa"
+                    android:text="@string/aa"
                     android:visibility="gone" />
 
 

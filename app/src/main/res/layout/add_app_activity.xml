@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -60,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_margin="6dp"
-                    android:text="Titel/Category/Avatar" />
+                    android:text="@string/titel_category_avatar" />
 
 
                 <EditText
@@ -69,11 +67,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1
-
-                "
+                    android:layout_weight="1"
                     android:gravity="left"
-                    android:hint="Titel of your App"
+                    android:hint="@string/titel_of_your_app"
                     android:textColorHint="#2196F3" />
 
 
@@ -150,14 +146,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/card_margin_side"
-                    android:text="Info/Package/Color" />
+                    android:text="@string/info_package_color" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_vertical_margin"
-                    android:text="Short description should contain #hashtags to poing out key functions of your app"
+                    android:text="@string/short_description_should_contain_hashtags_to_poing_out_key_functions_of_your_app"
                     android:textAlignment="center" />
 
 
@@ -166,7 +162,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:foregroundGravity="center"
-                    android:hint="Small description of your app"
+                    android:hint="@string/small_description_of_your_app"
                     android:paddingLeft="@dimen/activity_vertical_margin"
                     android:textColorHint="#2196F3" />
 
@@ -176,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/activity_vertical_margin"
-                    android:text="Just copy/paste your description from Google Play Store"
+                    android:text="@string/just_copy_paste_your_description_from_google_play_store"
                     android:textAlignment="center" />
 
                 <EditText
@@ -184,7 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:foregroundGravity="center"
-                    android:hint="Detail description of your app"
+                    android:hint="@string/detail_description_of_your_app"
                     android:paddingLeft="@dimen/activity_vertical_margin"
                     android:textColorHint="#2196F3" />
 
@@ -193,14 +189,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_vertical_margin"
-                    android:text="Package name of your app example: com.clakestudio.pc.startapp"
+                    android:text="@string/package_name_of_your_app_example_com_clakestudio_pc_startapp"
                     android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/et_package"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="name of your package"
+                    android:hint="@string/name_of_your_package"
                     android:inputType="textImeMultiLine"
                     android:paddingLeft="@dimen/activity_vertical_margin"
                     android:textColorHint="#2196F3" />
@@ -255,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_vertical_margin"
                     android:gravity="left"
-                    android:text="By hitting submit your app will be posted on StartApp Store, but do not worry, you can edit everything later from your Account"
+                    android:text="@string/by_hitting_submit_your_app_will_be_posted_on_startapp_store_but_do_not_worry_you_can_edit_everything_later_from_your_account"
                     android:textSize="18sp" />
 
                 <TextView

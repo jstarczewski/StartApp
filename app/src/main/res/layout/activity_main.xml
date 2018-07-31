@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:hint="search exact #function"
+                android:hint="@string/search_exact_function"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:textColor="#FFFFFF"

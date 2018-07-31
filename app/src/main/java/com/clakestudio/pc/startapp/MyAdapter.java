@@ -208,7 +208,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                                 appAvatar.child(myViewHolder.rootTitel.getText().toString()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Toast.makeText(context, "App removed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context, R.string.app_removed, Toast.LENGTH_LONG).show();
                                         appReference.child(myViewHolder.rootTitel.getText().toString()).removeValue();
                                         appObjects.remove(myViewHolder.getAdapterPosition());
                                         appRating.child(myViewHolder.rootTitel.getText().toString()).removeValue();
@@ -219,12 +219,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context,R.string.something_went_wrong, Toast.LENGTH_LONG).show();
                                     }
                                 });
 
                             } else {
-                                Toast.makeText(context, "You are not logged in", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.you_are_not_logged_in, Toast.LENGTH_LONG).show();
                             }
 
                         }

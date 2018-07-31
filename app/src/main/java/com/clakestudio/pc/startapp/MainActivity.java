@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                     if (editTextSearch.getText().toString().isEmpty() || !editTextSearch.getText().toString().contains("#") || editTextSearch.getText().toString().contains(" ")) {
 
                         if (editTextSearch.getText().toString().contains(" ") || editTextSearch.getText().toString().contains(",")) {
-                            Toast.makeText(getApplicationContext(), "We advise to search one particular functions/ delete space", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.wed_advise_to_search_one_particular, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Search is empty/does not contain #hashtag", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.search_is_empty_or_does_not_contain, Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -148,9 +148,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (firebaseUser == null) {
                     if (sharedPreferences.getBoolean("anonymous", false)) {
-                        Toast.makeText(getApplicationContext(), "Anonymous users can not view account", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.anonymous_users_can_not_view_account, Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Log in to view account", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), R.string.log_in_to_view_account, Toast.LENGTH_LONG).show();
                         nextActivity = new Intent(getApplicationContext(), StartActivity.class);
                     }
                 } else {
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             }
             case R.id.add_app: {
                 if (firebaseUser == null) {
-                    Toast.makeText(getApplicationContext(), "Create an account/log in first", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.create_an_account_log_in_firts, Toast.LENGTH_LONG).show();
 
                 } else {
                     getSharedPreferences("prefs", Context.MODE_PRIVATE).edit().putBoolean("edit", false).apply();

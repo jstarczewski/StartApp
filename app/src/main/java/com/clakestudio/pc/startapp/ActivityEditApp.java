@@ -42,7 +42,6 @@ public class ActivityEditApp extends AppCompatActivity {
 
 
     private DatabaseReference AppReference = FirebaseDatabase.getInstance().getReference("Apps");
-    private DatabaseReference RatingReference = FirebaseDatabase.getInstance().getReference("AppRatings");
     private final int GALLERY_ACTIVITY_CODE = 200;
     private StorageReference appAvatar = FirebaseStorage.getInstance().getReference("Avatars");
 
@@ -66,8 +65,8 @@ public class ActivityEditApp extends AppCompatActivity {
 
         final Button submitApp = (Button) findViewById(R.id.butt);
         final Button editColor = (Button) findViewById(R.id.buttColor);
-        editColor.setText("Edit color");
-        submitApp.setText("Submit edit");
+        editColor.setText(R.string.edit_color);
+        submitApp.setText(R.string.submit_edit);
         TextView textViewEditInfo = (TextView) findViewById(R.id.editInfo);
         textViewEditInfo.setVisibility(View.VISIBLE);
         final StorageReference appAvatar = FirebaseStorage.getInstance().getReference("Avatars");
@@ -88,9 +87,9 @@ public class ActivityEditApp extends AppCompatActivity {
 
         textViewCategory = (TextView) findViewById(R.id.categoryTextView);
         editAppTextView = (TextView) findViewById(R.id.appEditAdd);
-        editAppTextView.setText("Edit app's properties");
+        editAppTextView.setText(R.string.edit_app_properties);
         final Button editTextColor = (Button) findViewById(R.id.buttTextColor);
-        editTextColor.setText("Edit text color");
+        editTextColor.setText(R.string.edit_text_color);
         AppReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -122,7 +121,7 @@ public class ActivityEditApp extends AppCompatActivity {
             public void onClick(View view) {
 
                 progressDialog.show();
-                progressDialog.setMessage("Updating data");
+                progressDialog.setMessage(getString(R.string.updating_data));
 
                 if (picturePath.equals("noUrl")) {
                     submitApp.setVisibility(View.INVISIBLE);
@@ -216,7 +215,7 @@ public class ActivityEditApp extends AppCompatActivity {
             public void onClick(View view) {
 
                 ColorChooserDialog dialog = new ColorChooserDialog(ActivityEditApp.this);
-                dialog.setTitle("Choose color");
+                dialog.setTitle(R.string.choose_color);
                 dialog.setColorListener(new ColorListener() {
                     @Override
                     public void OnColorClick(View v, int color) {
@@ -236,7 +235,7 @@ public class ActivityEditApp extends AppCompatActivity {
 
 
                 ColorChooserDialog dialog = new ColorChooserDialog(ActivityEditApp.this);
-                dialog.setTitle("Choose color");
+                dialog.setTitle(R.string.choose_color);
                 dialog.setColorListener(new ColorListener() {
                     @Override
                     public void OnColorClick(View v, int color) {
@@ -257,7 +256,7 @@ public class ActivityEditApp extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (etTitel.getText().toString().length() == 0) {
-                    Toast.makeText(getApplicationContext(), "Declare title of your app first!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.declare_title_of_your_arr_first, Toast.LENGTH_LONG).show();
                 } else {
                     Intent gallery_Intent = new Intent(getApplicationContext(), GalleryUtil.class);
                     gallery_Intent.putExtra("titel", titel);
@@ -276,7 +275,7 @@ public class ActivityEditApp extends AppCompatActivity {
 
                 picturePath = data.getStringExtra("picturePath");
 
-                Toast.makeText(getApplicationContext(), "Avatar added, remember to tap submit after filling other properties", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.avatar_added_remember_to_tap_submit_after, Toast.LENGTH_LONG).show();
 
             }
 
